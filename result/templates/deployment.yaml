@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app-deploy
+  labels:
+    app: result-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: result
+      type: front
+  template:
+    metadata:
+       name: result 
+       labels:
+         app: result
+         type: front
+    spec:
+      containers:
+        - name: result-app
+          image: nelrajan/result
+          ports:
+            - containerPort: 80
